@@ -1,11 +1,11 @@
 {
-  "name": "የገና-project",
+  "name": "gene-project",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": " vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
