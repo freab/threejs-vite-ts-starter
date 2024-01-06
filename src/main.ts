@@ -233,9 +233,6 @@ animate();
 
 const guiParameters = {
   fogColor: '0x8d8d8d',
-  takeScreenshot: function () {
-    takeScreenshot();
-  },
 };
 
 // Add tweakable parameters to dat.GUI
@@ -246,20 +243,3 @@ fogFolder.addColor(guiParameters, 'fogColor').onChange(() => {
   }
 });
 fogFolder.close();
-
-othergui.add(guiParameters, 'takeScreenshot').name('Take Screenshot');
-function takeScreenshot() {
-  const screenshotDataUrl = renderer.domElement.toDataURL('image/png');
-
-  const link = document.createElement('a');
-
-  link.href = screenshotDataUrl;
-
-  link.download = 'የገና_3D_Postcard1.png';
-
-  document.body.appendChild(link);
-
-  link.click();
-
-  document.body.removeChild(link);
-}

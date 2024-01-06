@@ -32,7 +32,7 @@ export default class ThreeDText {
       },
       {
         key: 'leferab',
-        text: 'ለፍሬአብ',
+        text: 'ለሁሉም',
         color: 0x21449c,
         position: { x: 0, y: -0.3, z: 0 },
       },
