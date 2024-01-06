@@ -85,13 +85,13 @@ function getY(x: number, z: number) {
   return scalar * (scalar > 0 ? 3 : 1);
 }
 
-const ambient = new THREE.HemisphereLight(0xffffff, 0x8d8d8d, 0.25);
+const ambient = new THREE.HemisphereLight(0xffffff, 0x8d8d8d, 0);
 scene.add(ambient);
 
-spotLight = new THREE.SpotLight(0xffffff, 0.1);
+spotLight = new THREE.SpotLight(0xffffff, 1);
 spotLight.position.set(5.5, 15, 35.5);
 spotLight.angle = Math.PI / 8;
-spotLight.penumbra = 2;
+spotLight.penumbra = 1;
 spotLight.decay = 2;
 spotLight.distance = 0;
 
