@@ -1,5 +1,5 @@
 {
-  "name": "threejs-vite-ts-starter",
+  "name": "የገና-project",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -16,6 +16,8 @@
     "vite": "^3.1.0"
   },
   "dependencies": {
+    "lil-gui": "^0.19.1",
+    "simplex-noise": "^4.0.1",
     "stats.js": "^0.17.0",
     "three": "^0.145.0"
   }
