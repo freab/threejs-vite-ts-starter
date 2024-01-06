@@ -37,10 +37,10 @@ const displacementTexture = textureLoader.load(
   'textures/ground/Ground037_1K-JPG_Displacement.jpg',
 );
 const normalMapTexture = textureLoader.load(
-  '/textures/ground/Ground037_1K-JPG_NormalGL.jpg',
+  'textures/ground/Ground037_1K-JPG_NormalGL.jpg',
 );
 const roughnessTexture = textureLoader.load(
-  '/textures/ground/Ground037_1K-JPG_Roughness.jpg',
+  'textures/ground/Ground037_1K-JPG_Roughness.jpg',
 );
 
 const groundgeometry = new THREE.PlaneGeometry(
@@ -84,24 +84,6 @@ function getY(x: number, z: number) {
   const scalar = noice(x * 0.0, z * 0.0);
   return scalar * (scalar > 0 ? 3 : 1);
 }
-
-const ambient = new THREE.HemisphereLight(0xffffff, 0x8d8d8d, 0);
-scene.add(ambient);
-
-spotLight = new THREE.SpotLight(0xffffff, 1);
-spotLight.position.set(5.5, 15, 35.5);
-spotLight.angle = Math.PI / 8;
-spotLight.penumbra = 1;
-spotLight.decay = 2;
-spotLight.distance = 0;
-
-spotLight.castShadow = true;
-spotLight.shadow.mapSize.width = 1024;
-spotLight.shadow.mapSize.height = 1024;
-spotLight.shadow.camera.near = 1;
-spotLight.shadow.camera.far = 10;
-spotLight.shadow.focus = 1;
-scene.add(spotLight);
 
 for (let i = 0; i < resolution; i++) {
   for (let j = 0; j < resolution; j++) {
@@ -149,6 +131,24 @@ gltfLoader.load(modelPath, (gltf) => {
   scene.add(model);
 });
 
+const ambient = new THREE.HemisphereLight(0xffffff, 0x8d8d8d, 0.05);
+scene.add(ambient);
+
+spotLight = new THREE.SpotLight(0xffffff, 1);
+spotLight.position.set(5.5, 15, 35.5);
+spotLight.angle = Math.PI / 8;
+spotLight.penumbra = 1;
+spotLight.decay = 2;
+spotLight.distance = 0;
+
+spotLight.castShadow = true;
+spotLight.shadow.mapSize.width = 1024;
+spotLight.shadow.mapSize.height = 1024;
+spotLight.shadow.camera.near = 1;
+spotLight.shadow.camera.far = 10;
+spotLight.shadow.focus = 1;
+scene.add(spotLight);
+
 const sphereObject = new SphereObject();
 scene.add(sphereObject.mesh);
 
@@ -156,39 +156,6 @@ scene.fog = new THREE.Fog(0xcccccc, 1, 100);
 
 const othergui = new lilGui();
 othergui.close();
-
-const guiParameters = {
-  fogColor: '0x8d8d8d',
-  takeScreenshot: function () {
-    takeScreenshot();
-  },
-};
-// Add tweakable parameters to dat.GUI
-const fogFolder = othergui.addFolder('Fog');
-fogFolder.addColor(guiParameters, 'fogColor').onChange(() => {
-  if (scene.fog !== null) {
-    scene.fog.color.set(guiParameters.fogColor);
-  }
-});
-fogFolder.close();
-
-// taking screenshots
-othergui.add(guiParameters, 'takeScreenshot').name('Take Screenshot');
-function takeScreenshot() {
-  const screenshotDataUrl = renderer.domElement.toDataURL('image/png');
-
-  const link = document.createElement('a');
-
-  link.href = screenshotDataUrl;
-
-  link.download = 'የገና_3D_Postcard.png';
-
-  document.body.appendChild(link);
-
-  link.click();
-
-  document.body.removeChild(link);
-}
 
 const textObject = new ThreeDText(othergui);
 textObject.mesh.position.set(-4, -2.6, -12);
@@ -228,7 +195,7 @@ camera.position.set(2, 5, 15);
 
 const renderer = new THREE.WebGLRenderer({
   canvas,
-  antialias: true,
+  antialias: true, // Enable antialiasing
 });
 
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -263,3 +230,36 @@ const animate = () => {
 };
 
 animate();
+
+const guiParameters = {
+  fogColor: '0x8d8d8d',
+  takeScreenshot: function () {
+    takeScreenshot();
+  },
+};
+
+// Add tweakable parameters to dat.GUI
+const fogFolder = othergui.addFolder('Fog');
+fogFolder.addColor(guiParameters, 'fogColor').onChange(() => {
+  if (scene.fog !== null) {
+    scene.fog.color.set(guiParameters.fogColor);
+  }
+});
+fogFolder.close();
+
+othergui.add(guiParameters, 'takeScreenshot').name('Take Screenshot');
+function takeScreenshot() {
+  const screenshotDataUrl = renderer.domElement.toDataURL('image/png');
+
+  const link = document.createElement('a');
+
+  link.href = screenshotDataUrl;
+
+  link.download = 'የገና_3D_Postcard1.png';
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  document.body.removeChild(link);
+}
