@@ -6,7 +6,6 @@ import { GUI } from 'lil-gui';
 export default class ThreeDText {
   mesh: any;
   textParams: any;
-  inputElement: HTMLInputElement | undefined;
 
   constructor(gui: GUI) {
     const textObject = new Object3D();
@@ -114,39 +113,10 @@ export default class ThreeDText {
             textParams.mesh.position.z = textParams.position.z;
           });
 
-        // Add text input control for changing the text content
-        const textInput = document.createElement('input');
-        textInput.type = 'text';
-        textInput.value = textParams.text;
-        textInput.addEventListener('input', (event) => {
-          const newText = (event.target as HTMLInputElement).value;
-          textParams.text = newText;
-          updateTextGeometry(textParams);
-        });
-
-        textFolder.add(textInput, 'value').name(`${textParams.text} Text`);
-        textFolder.close();
-
-        function updateTextGeometry(params: {
-          text: string;
-          mesh: { geometry: TextGeometry };
-        }) {
-          const newTextGeometry = new TextGeometry(params.text, {
-            font,
-            size: 1,
-            height: 0.2,
-            curveSegments: 12,
-            bevelEnabled: true,
-            bevelThickness: 0.03,
-            bevelSize: 0.02,
-            bevelSegments: 5,
-          });
-
-          params.mesh.geometry.dispose();
-          params.mesh.geometry = newTextGeometry;
-        }
+        // No need for text input control
       });
 
+      textFolder.close();
       gui.close();
     });
 
