@@ -228,6 +228,7 @@ camera.position.set(2, 5, 15);
 
 const renderer = new THREE.WebGLRenderer({
   canvas,
+  antialias: true,
 });
 
 renderer.setSize(window.innerWidth, window.innerHeight);
