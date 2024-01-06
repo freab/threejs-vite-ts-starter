@@ -40,7 +40,7 @@ export default class ThreeDText {
     ];
 
     const fontLoader = new FontLoader();
-    fontLoader.load('../public/fonts/Meaza_Regular.json', (font) => {
+    fontLoader.load('/fonts/Meaza_Regular.json', (font) => {
       const commonMaterialOptions = {
         color: 0xffffff,
         flatShading: true,

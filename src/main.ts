@@ -28,19 +28,19 @@ const modelHeight = 7;
 const textureLoader = new THREE.TextureLoader();
 
 const colorTexture = textureLoader.load(
-  '../public/textures/ground/Ground037_1K-JPG_Color.jpg',
+  'textures/ground/Ground037_1K-JPG_Color.jpg',
 );
 const ambientOcclusionTexture = textureLoader.load(
-  '../public/textures/ground/Ground037_1K-JPG_AmbientOcclusion.jpg',
+  'textures/ground/Ground037_1K-JPG_AmbientOcclusion.jpg',
 );
 const displacementTexture = textureLoader.load(
-  '../public/textures/ground/Ground037_1K-JPG_Displacement.jpg',
+  'textures/ground/Ground037_1K-JPG_Displacement.jpg',
 );
 const normalMapTexture = textureLoader.load(
-  '../public/textures/ground/Ground037_1K-JPG_NormalGL.jpg',
+  '/textures/ground/Ground037_1K-JPG_NormalGL.jpg',
 );
 const roughnessTexture = textureLoader.load(
-  '../public/textures/ground/Ground037_1K-JPG_Roughness.jpg',
+  '/textures/ground/Ground037_1K-JPG_Roughness.jpg',
 );
 
 const groundgeometry = new THREE.PlaneGeometry(
@@ -129,7 +129,7 @@ for (let i = 0; i < resolution; i++) {
 }
 
 const gltfLoader = new GLTFLoader();
-const modelPath = '../public/models/nativity.glb';
+const modelPath = '/models/nativity.glb';
 
 gltfLoader.load(modelPath, (gltf) => {
   const model = gltf.scene;
